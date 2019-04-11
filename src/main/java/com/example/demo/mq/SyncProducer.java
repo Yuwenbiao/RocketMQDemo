@@ -18,11 +18,11 @@ import java.io.UnsupportedEncodingException;
  */
 public class SyncProducer {
     public static void main(String[] args) throws MQClientException, UnsupportedEncodingException, RemotingException, InterruptedException, MQBrokerException {
-        DefaultMQProducer producer = new DefaultMQProducer("Please_rename_unique_group_name");
-        producer.setNamesrvAddr("192.168.100.131:9876");
+        DefaultMQProducer producer = new DefaultMQProducer("testGroup");
+        producer.setNamesrvAddr("172.17.0.2:9876");
         producer.start();
         for (int i = 0; i < 100; i++) {
-            Message msg = new Message("Topic Test", "TagA", ("Hello RocketMQ" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
+            Message msg = new Message("TopicTest", "TagA", ("Hello RocketMQ" + i).getBytes(RemotingHelper.DEFAULT_CHARSET));
             SendResult sendResult = producer.send(msg);
             System.out.printf("%s%n", sendResult);
         }

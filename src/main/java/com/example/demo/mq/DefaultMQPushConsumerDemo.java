@@ -14,8 +14,8 @@ import org.apache.rocketmq.common.consumer.ConsumeFromWhere;
  */
 public class DefaultMQPushConsumerDemo {
     public static void main(String[] args) throws MQClientException {
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("please rename to unique group name");
-        consumer.setNamesrvAddr("192.168.249.47:9876");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("testGroup");
+        consumer.setNamesrvAddr("172.17.0.2:9876");
         consumer.setConsumeFromWhere(ConsumeFromWhere.CONSUME_FROM_FIRST_OFFSET);
         consumer.subscribe("TopicTest", "*");
         consumer.registerMessageListener((MessageListenerConcurrently) (list, consumeConcurrentlyContext) -> {
